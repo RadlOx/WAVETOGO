@@ -15,7 +15,7 @@ function toggleDetailsAndReset(idx) {
     const arrow = card.querySelector(".arrow-toggle");
     ext.classList.toggle("open");
     arrow.classList.toggle("rotate-icon");
-    resetExtrasOnly(idx);
+    // RIMOSSO resetExtrasOnly(idx) per mantenere le scelte dell'utente alla chiusura
 }
 
 function resetExtrasOnly(idx) {
@@ -159,4 +159,4 @@ window.onclick = (e) => {
 
 // Inizializzazione
 for(let i=0; i<5; i++) { renderCalendar(i); }
-twemoji.parse(document.body);   
+twemoji.parse(document.body);
