@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveToGo - Prenotazione</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. CONFIGURAZIONE VARIABILI & COLORI --- */
+        :root {
+            /* Palette WaveToGo */
+            --primary-dark: #0a1e3b;    /* Blu Notte (Header) */
+            --accent-orange: #F5A623;   /* Arancio (Bottoni/Dettagli) */
+            --bg-solid: #E8EEF4;        /* Sfondo Azzurro Ghiaccio (NO FOTO) */
+            --white: #FFFFFF;
+            --text-main: #333333;
+            --text-light: #888888;
+            
+            /* UI Elements */
+            --radius: 16px;
+            --shadow: 0 8px 24px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* --- 2. RESET & LAYOUT GENERALE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-solid);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Evita scroll doppio */
+        }
+
+        /* --- 3. HEADER FISSO --- */
+        .app-header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        
+        .header-icon { font-size: 1.2rem; cursor: pointer; }
+        
+        /* Logo Stilizzato */
+        .logo-container { font-weight: 800; font-size: 1.4rem; letter-spacing: 0.5px; }
+        .logo-wave { color: var(--white); font-style: italic; }
+        .logo-to { color: var(--accent-orange); }
+        .logo-go { color: var(--white); }
+
+        /* --- 4. CONTENUTO PRINCIPALE SCROLLABILE --- */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            padding-bottom: 100px; /* Spazio per non coprire il bottone con la nav */
+        }
+
+        /* --- 5. CARD GOMMONE --- */
+        .boat-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .boat-image-placeholder {
+            width: 100%;
+            height: 160px;
+            background-color: #eee;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .boat-image-placeholder img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .boat-info-row { display: flex; justify-content: space-between; align-items: center; }
+        .boat-details h3 { font-size: 1.2rem; margin-bottom: 4px; color: var(--primary-dark); }
+        .boat-price { color: var(--text-light); font-size: 0.95rem; }
+        .boat-price strong { color: var(--accent-orange); font-size: 1.1rem; }
+
+        .boat-icons-row { display: flex; gap: 8px; }
+        .icon-box {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+        }
+        .icon-marker { background: rgba(245, 166, 35, 0.15); color: var(--accent-orange); }
+        .icon-refresh { background: rgba(10, 30, 59, 0.1); color: var(--primary-dark); }
+
+        /* --- 6. WIDGET CALENDARIO INTERATTIVO --- */
+        .booking-widget {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .widget-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px;
+        }
+        .widget-header h4 { font-size: 1.1rem; color: var(--primary-dark); text-transform: capitalize; }
+        
+        .arrow-btn {
+            width: 30px; height: 30px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            background: #f4f4f4;
+            color: var(--primary-dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .arrow-btn:hover { background: var(--accent-orange); color: white; }
+
+        /* Griglia Giorni */
+        .weekdays-grid {
+            display: grid; grid-template-columns: repeat(7, 1fr);
+            text-align: center; font-size: 0.8rem; color: #aaa;
+            margin-bottom: 10px; font-weight: 600;
+        }
+
+        .calendar-grid {
+            display: grid; grid-template-columns: repeat(7, 1fr);
+            gap: 5px; row-gap: 10px;
+        }
+
+        .day-item {
+            height: 35px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .day-item:hover { background-color: #f0f0f0; }
+        
+        .day-item.selected {
+            background-color: var(--accent-orange);
+            color: white;
+            box-shadow: 0 4px 10px rgba(245, 166, 35, 0.4);
+            transform: scale(1.1);
+        }
+        
+        .day-item.empty { cursor: default; pointer-events: none; }
+
+        .widget-footer {
+            margin-top: 15px; padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem; color: var(--text-light); text-align: center;
+        }
+
+        /* --- 7. BOTTONE PRENOTA --- */
+        .btn-prenota-large {
+            width: 100%;
+            background-color: var(--accent-orange);
+            color: var(--white);
+            border: none;
+            padding: 18px;
+            border-radius: var(--radius);
+            font-size: 1.1rem; font-weight: 700; letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+            transition: var(--transition);
+        }
+        .btn-prenota-large:active { transform: scale(0.98); }
+
+        /* --- 8. BOTTOM NAV --- */
+        .bottom-nav {
+            background-color: var(--white);
+            position: fixed; bottom: 0; width: 100%;
+            display: flex; justify-content: space-around;
+            padding: 10px 0 25px 0; /* Extra padding per iPhone recenti */
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            z-index: 99;
+        }
+
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: #ccc; font-size: 0.7rem; font-weight: 600;
+            cursor: pointer; transition: var(--transition);
+        }
+        .nav-item i { font-size: 1.4rem; margin-bottom: 4px; }
+        
+        .nav-item.active { color: var(--primary-dark); }
+        .nav-item.active i { color: var(--accent-orange); }
+
+        /* Animazione */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <i class="fas fa-bars header-icon"></i>
+        <div class="logo-container">
+            <span class="logo-wave">Wave</span><span class="logo-to">To</span><span class="logo-go">Go</span>
+        </div>
+        <i class="far fa-user header-icon"></i>
+    </header>
+
+    <main class="main-content">
+        
+        <div class="boat-card">
+            <div class="boat-image-placeholder">
+                <img src="https://placehold.co/600x350/EFF6FF/0a1e3b?text=2Bar+62+Luxury" alt="Gommone">
+            </div>
+            
+            <div class="boat-info-row">
+                <div class="boat-details">
+                    <h3>2Bar 62 Luxury</h3>
+                    <p class="boat-price">Da <strong id="price-display">€150</strong> /gg</p>
+                </div>
+                <div class="boat-icons-row">
+                    <div class="icon-box icon-marker"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="icon-box icon-refresh"><i class="fas fa-sync-alt"></i></div>
+                 </div>
+            </div>
+        </div>
+
+        <div class="booking-widget">
+            <div class="widget-header">
+                <div class="arrow-btn" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></div>
+                <h4 id="month-year-display">Maggio 2024</h4>
+                <div class="arrow-btn" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            
+            <div class="weekdays-grid">
+                <div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div><div>Dom</div>
+            </div>
+
+            <div class="calendar-grid" id="calendar-days"></div>
+
+            <div class="widget-footer">
+                <p id="selected-date-msg">Seleziona una data per vedere disponibilità</p>
+            </div>
+        </div>
+
+        <button class="btn-prenota-large" onclick="prenota()">PRENOTA ORA</button>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="setActive(this)"><i class="fas fa-home"></i><span>Home</span></div>
+        <div class="nav-item" onclick="setActive(this)"><i class="far fa-map"></i><span>Itinerari</span></div>
+        <div class="nav-item" onclick="setActive(this)"><i class="far fa-heart"></i><span>Preferiti</span></div>
+        <div class="nav-item" onclick="setActive(this)"><i class="far fa-comment"></i><span>Chat</span></div>
+        <div class="nav-item" onclick="setActive(this)"><i class="far fa-user-circle"></i><span>Profilo</span></div>
+    </nav>
+
+    <script>
+        // CONFIGURAZIONE PREZZI (Mese: Prezzo)
+        // 4=Maggio, 5=Giugno, 6=Luglio, 7=Agosto, 8=Settembre
+        const seasonPrices = {
+            4: 150, 
+            5: 200, 
+            6: 280, 
+            7: 350, 
+            8: 180
+        };
+
+        const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
+                            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+
+        // Imposta la data iniziale (es. 1 Maggio 2024)
+        let currentDate = new Date(2024, 4, 1); 
+        let selectedDayElement = null;
+
+        function renderCalendar() {
+            const monthIndex = currentDate.getMonth();
+            const year = currentDate.getFullYear();
+            const container = document.getElementById('calendar-days');
+            
+            // 1. Aggiorna UI Testuale
+            document.getElementById('month-year-display').innerText = `${monthNames[monthIndex]} ${year}`;
+            
+            // Logica prezzi: se il mese non è in lista, usa prezzo base
+            const currentPrice = seasonPrices[monthIndex] || 150;
+            document.getElementById('price-display').innerText = `€${currentPrice}`;
+
+            container.innerHTML = ""; // Pulisci griglia
+
+            // 2. Calcolo giorni
+            const firstDayIndex = new Date(year, monthIndex, 1).getDay(); // 0=Dom
+            const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+            
+            // Aggiustamento per iniziare Lunedì (Lun=0, Dom=6)
+            const adjustedFirstDay = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
+
+            // 3. Celle Vuote
+            for (let i = 0; i < adjustedFirstDay; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('day-item', 'empty');
+                container.appendChild(emptyDiv);
+            }
+
+            // 4. Celle Giorni
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.innerText = day;
+                dayDiv.classList.add('day-item');
+                
+                // Click Event
+                dayDiv.addEventListener('click', () => {
+                    if (selectedDayElement) selectedDayElement.classList.remove('selected');
+                    dayDiv.classList.add('selected');
+                    selectedDayElement = dayDiv;
+                    
+                    document.getElementById('selected-date-msg').innerText = 
+                        `Scelto: ${day} ${monthNames[monthIndex]} - Prezzo totale: €${currentPrice}`;
+                    document.getElementById('selected-date-msg').style.color = "#0a1e3b";
+                    document.getElementById('selected-date-msg').style.fontWeight = "bold";
+                });
+
+                container.appendChild(dayDiv);
+            }
+        }
+
+        function changeMonth(step) {
+            currentDate.setMonth(currentDate.getMonth() + step);
+            selectedDayElement = null;
+            document.getElementById('selected-date-msg').innerText = "Seleziona una data per vedere disponibilità";
+            document.getElementById('selected-date-msg').style.color = "#888";
+            document.getElementById('selected-date-msg').style.fontWeight = "normal";
+            renderCalendar();
+        }
+
+        function setActive(el) {
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function prenota() {
+            if(!selectedDayElement) {
+                alert("Per favore seleziona un giorno dal calendario.");
+            } else {
+                alert("Reindirizzamento a WhatsApp per confermare...");
+                // Qui potresti mettere: window.location.href = "https://wa.me/...";
+            }
+        }
+
+        // Avvio iniziale
+        renderCalendar();
+    </script>
+</body>
+</html>

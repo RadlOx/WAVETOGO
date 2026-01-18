@@ -1,0 +1,93 @@
+/* 1. DEFINIZIONE VARIABILI (PALETTE) */
+:root {
+    /* Colori Principali */
+    --primary-blue: #003366;       /* Blu Notte Profondo */
+    --accent-turquoise: #00A8CC;   /* Turchese Acqua Marina */
+    --luxury-gold: #D4AF37;        /* Oro Sabbia (per dettagli premium) */
+    
+    /* Colori di Sfondo e Supporto */
+    --bg-light: #F9FBFF;           /* Sfondo quasi bianco, molto fresco */
+    --text-dark: #1A1A1A;          /* Grigio quasi nero per leggibilità massima */
+    --text-gray: #555555;          /* Grigio per testi secondari */
+    --white: #FFFFFF;
+    
+    /* Variabili Funzionali */
+    --transition: all 0.3s ease;   /* Per animazioni fluide dei bottoni */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombra leggera per le card */
+}
+
+/* 2. RESET E BASE STILE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; /* Font moderno e pulito */
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Esempio di applicazione delle variabili */
+h1, h2, h3 {
+    color: var(--primary-blue);
+    font-family: 'Playfair Display', serif; /* Font graziato per i titoli (più elegante) */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: var(--transition);
+}
+
+/* Bottone di Prenotazione "WaveToGo Style" */
+.btn-cta {
+    background-color: var(--accent-turquoise);
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 50px; /* Bordi arrotondati = design moderno */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.btn-cta:hover {
+    background-color: var(--primary-blue); /* Cambia colore al passaggio del mouse */
+    transform: translateY(-3px); /* Effetto sollevamento */
+}
+
+/* Evidenziazione per la 'G' o dettagli oro */
+.highlight {
+    color: var(--luxury-gold);
+}
+
+/* Layout Navigazione */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'sans-serif', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+/* MAIN */
+
+main {
+    padding: 40px 20px;
+}   
