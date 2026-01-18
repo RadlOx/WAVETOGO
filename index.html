@@ -5,20 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WaveToGo - Prenotazione</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="./index.css" />
+    
+    <style>
+      /* Stili necessari per il funzionamento del popup */
+      .modal-overlay {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(4px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        padding: 20px;
+      }
+      .modal-content {
+        background: white;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 25px;
+        overflow: hidden;
+        animation: modalSlideUp 0.3s ease-out;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      }
+      @keyframes modalSlideUp {
+        from { transform: translateY(40px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .modal-header { background: #1a2a6c; color: white; padding: 20px; text-align: center; font-weight: 700; }
+      .modal-body { padding: 25px; color: #333; line-height: 1.6; font-family: 'Montserrat', sans-serif; }
+      .modal-footer { display: flex; padding: 15px; gap: 10px; background: #f9f9f9; }
+      .btn-modal-confirm { flex: 1; background: #25D366; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; }
+      .btn-modal-close { flex: 1; background: #eee; color: #333; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; }
+    </style>
   </head>
   <body>
-    <div class="hero-viewport">
-      <div class="hero-image"></div>
-    </div>
 
     <header class="app-header">
       <i class="fas fa-bars header-icon"></i>
@@ -40,8 +65,7 @@
         </div>
       </div>
     </header>
-
-    <main class="main-content">
+<div class="main-content" id="page1">
       <div class="carousel-viewport" id="boat-carousel">
         <div class="carousel-item">
           <div class="boat-card" data-index="0">
@@ -61,7 +85,10 @@
                 <div class="icon-box icon-refresh" onclick="resetExtrasOnly(0)">
                   <i class="fas fa-sync-alt"></i>
                 </div>
-                <div class="icon-box icon-marker" onclick="toggleDetailsAndReset(0)">
+                <div
+                  class="icon-box icon-marker"
+                  onclick="toggleDetailsAndReset(0)"
+                >
                   <span><i class="fa-solid fa-list"></i></span>
                   <i class="fas fa-arrow-down arrow-toggle"></i>
                 </div>
@@ -71,28 +98,34 @@
             <div class="boat-details-extended">
               <div class="details-grid">
                 <div class="detail-item">
-                  <i class="fas fa-tachometer-alt"></i><span class="det-txt">Motore: 40/70cv</span>
+                  <i class="fas fa-tachometer-alt"></i
+                  ><span class="det-txt">Motore: 40cv</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-users"></i><span class="det-txt">Portata: 8 Persone</span>
+                  <i class="fas fa-users"></i
+                  ><span class="det-txt">Portata: 8</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-music"></i><span class="det-txt">Impianto Audio</span>
+                  <i class="fas fa-music"></i
+                  ><span class="det-txt">Stereo </span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-shower"></i><span class="det-txt">Doccetta</span>
+                  <i class="fas fa-shower"></i
+                  ><span class="det-txt">Doccetta</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-umbrella-beach"></i><span class="det-txt">Tendalino</span>
+                  <i class="fas fa-umbrella-beach"></i
+                  ><span class="det-txt">Tendalino</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-charging-station"></i><span class="det-txt">Prese USB</span>
+                  <i class="fas fa-charging-station"></i
+                  ><span class="det-txt">Prese USB</span>
                 </div>
               </div>
 
               <div class="extras-container">
                 <div class="extras-title">Personalizza il tuo viaggio</div>
-                
+
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-gas-pump"></i>
@@ -100,7 +133,13 @@
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€30</span>
-                    <input type="checkbox" class="extra-checkbox" data-price="30" data-name="Benzina" onchange="calculateTotalWithExtras(0)" />
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="30"
+                      data-name="Benzina"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
                   </div>
                 </div>
 
@@ -111,7 +150,30 @@
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€15</span>
-                    <input type="checkbox" class="extra-checkbox" data-price="15" data-name="Ghiacciaia" onchange="calculateTotalWithExtras(0)" />
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="15"
+                      data-name="Ghiacciaia"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
+                  </div>
+                </div>
+
+                <div class="extra-row disabled">
+                  <div class="extra-label">
+                    <i class="fas fa-sun"></i>
+                    <span class="extra-txt">Telo e crema solare</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€20</span>
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="20"
+                      data-name="Telo e crema solare"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
                   </div>
                 </div>
 
@@ -122,8 +184,31 @@
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€10</span>
-                    <input type="checkbox" class="extra-checkbox" data-price="10" data-name="Snorkeling" onchange="calculateTotalWithExtras(0)" />
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="10"
+                      data-name="Snorkeling"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
                   </div>
+                </div>
+
+                <div class="extra-row">
+                <div class="extra-label">
+                    <i class="fa-solid fa-life-ring"></i> 
+                    <span class="extra-txt">Giochi gonfiabili *</span>
+                </div>
+                <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€25</span>
+                    <input
+                    type="checkbox"
+                    class="extra-checkbox"
+                    data-price="25" 
+                    data-name="Giochi Gonfiabili"
+                    onchange="calculateTotalWithExtras(0)"
+                    />
+                </div>
                 </div>
 
                 <div class="extra-row">
@@ -133,15 +218,23 @@
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€100</span>
-                    <input type="checkbox" class="extra-checkbox" data-price="100" data-name="Set GoPro" onchange="calculateTotalWithExtras(0)"/>
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="100"
+                      data-name="Set GoPro"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
                   </div>
                 </div>
 
-                <br>
+
+                <br />
                 <p class="note">
-                    <strong>NOTA BENE (*):</strong> Gli accessori contrassegnati sono forniti a noleggio. 
-                    Ti preghiamo di averne cura e riconsegnarli integri a fine giornata: 
-                    eventuali danni o smarrimenti verranno detratti dal deposito cauzionale.
+                  <strong>NOTA BENE (*):</strong> Gli accessori contrassegnati
+                  sono forniti a noleggio. Ti preghiamo di averne cura e
+                  riconsegnarli integri a fine giornata: eventuali danni o
+                  smarrimenti verranno detratti dal deposito cauzionale.
                 </p>
               </div>
             </div>
@@ -159,7 +252,13 @@
                 </div>
               </div>
               <div class="weekdays-grid">
-                <div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div><div>Dom</div>
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mer</div>
+                <div>Gio</div>
+                <div>Ven</div>
+                <div>Sab</div>
+                <div>Dom</div>
               </div>
               <div class="calendar-grid"></div>
               <div class="widget-footer">
@@ -175,29 +274,333 @@
           </div>
         </div>
       </div>
-    </main>
+      <div class="main-footer">
+        <div class="footer-content">
+          <div class="footer-section brand-info">
+            <div class="logo-container">
+              <span class="logo-wave">Wave</span><span class="logo-to">To</span
+              ><span class="logo-go">Go</span>
+            </div>
+            <p>
+              Noleggio gommoni d'eccellenza. Esplora le coste più belle con il
+              massimo comfort e sicurezza.
+            </p>
+          </div>
+  
+          <div class="footer-section">
+            <h4>Contatti</h4>
+            <ul>
+              <li>
+                <i class="fas fa-location-dot"></i> Porto di [Inserisci Nome
+                Porto]
+              </li>
+              <li><i class="fas fa-phone"></i> +39 324 683 0501</li>
+              <li><i class="fas fa-envelope"></i> info@wavetogo.it</li>
+            </ul>
+          </div>
+  
+          <div class="footer-section">
+            <h4>Legale</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="#">Termini e Condizioni</a></li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="footer-bottom">
+          <p>&copy; 2024 WaveToGo - Tutti i diritti riservati.</p>
+          <p>P.IVA 01234567890 | [Inserisci Ragione Sociale]</p>
+        </div>
+    </div>
+    </div>
+<div class="main-content" id="page2">
+      <div class="carousel-viewport" id="boat-carousel">
+        <div class="carousel-item">
+          <div class="boat-card" data-index="0">
+            <div class="boat-image-placeholder">
+              <img src="./image.png" alt="Gommone" />
+            </div>
+            <div class="boat-info-row">
+              <div class="boat-details">
+                <h3>2Bar 62 Luxury</h3>
+                <p class="boat-price">
+                  <span class="txt-from">Da</span>
+                  <strong class="price-display">€150</strong>
+                  <span class="txt-perday">/gg</span>
+                </p>
+              </div>
+              <div class="boat-icons-row" style="display: flex; gap: 8px">
+                <div class="icon-box icon-refresh" onclick="resetExtrasOnly(0)">
+                  <i class="fas fa-sync-alt"></i>
+                </div>
+                <div
+                  class="icon-box icon-marker"
+                  onclick="toggleDetailsAndReset(0)"
+                >
+                  <span><i class="fa-solid fa-list"></i></span>
+                  <i class="fas fa-arrow-down arrow-toggle"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="boat-details-extended">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <i class="fas fa-tachometer-alt"></i
+                  ><span class="det-txt">Motore: 40cv</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-users"></i
+                  ><span class="det-txt">Portata: 8</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-music"></i
+                  ><span class="det-txt">Stereo </span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-shower"></i
+                  ><span class="det-txt">Doccetta</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-umbrella-beach"></i
+                  ><span class="det-txt">Tendalino</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-charging-station"></i
+                  ><span class="det-txt">Prese USB</span>
+                </div>
+              </div>
+
+              <div class="extras-container">
+                <div class="extras-title">Personalizza il tuo viaggio</div>
+
+                <div class="extra-row">
+                  <div class="extra-label">
+                    <i class="fas fa-gas-pump"></i>
+                    <span class="extra-txt">Benzina Extra ( Tanica* )</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€30</span>
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="30"
+                      data-name="Benzina"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
+                  </div>
+                </div>
+
+                <div class="extra-row">
+                  <div class="extra-label">
+                    <i class="fas fa-box"></i>
+                    <span class="extra-txt">Ghiacciaia *</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€15</span>
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="15"
+                      data-name="Ghiacciaia"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
+                  </div>
+                </div>
+
+                <div class="extra-row disabled">
+                  <div class="extra-label">
+                    <i class="fas fa-sun"></i>
+                    <span class="extra-txt">Telo e crema solare</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€20</span>
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="20"
+                      data-name="Telo e crema solare"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
+                  </div>
+                </div>
+
+                <div class="extra-row">
+                  <div class="extra-label">
+                    <i class="fas fa-mask"></i>
+                    <span class="extra-txt">Kit Snorkeling *</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€10</span>
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="10"
+                      data-name="Snorkeling"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
+                  </div>
+                </div>
+
+                <div class="extra-row">
+                <div class="extra-label">
+                    <i class="fa-solid fa-life-ring"></i> 
+                    <span class="extra-txt">Giochi gonfiabili *</span>
+                </div>
+                <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€25</span>
+                    <input
+                    type="checkbox"
+                    class="extra-checkbox"
+                    data-price="25" 
+                    data-name="Giochi Gonfiabili"
+                    onchange="calculateTotalWithExtras(0)"
+                    />
+                </div>
+                </div>
+
+                <div class="extra-row">
+                  <div class="extra-label">
+                    <i class="fas fa-camera-retro"></i>
+                    <span class="extra-txt">Set GoPro *</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <span class="extra-price-tag">+€100</span>
+                    <input
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="100"
+                      data-name="Set GoPro"
+                      onchange="calculateTotalWithExtras(0)"
+                    />
+                  </div>
+                </div>
+
+
+                <br />
+                <p class="note">
+                  <strong>NOTA BENE (*):</strong> Gli accessori contrassegnati
+                  sono forniti a noleggio. Ti preghiamo di averne cura e
+                  riconsegnarli integri a fine giornata: eventuali danni o
+                  smarrimenti verranno detratti dal deposito cauzionale.
+                </p>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="booking-widget">
+              <div class="widget-header">
+                <div class="arrow-btn" onclick="changeMonth(-1, 0)">
+                  <i class="fas fa-chevron-left"></i>
+                </div>
+                <h4 class="month-year-display">Maggio 2024</h4>
+                <div class="arrow-btn" onclick="changeMonth(1, 0)">
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+              </div>
+              <div class="weekdays-grid">
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mer</div>
+                <div>Gio</div>
+                <div>Ven</div>
+                <div>Sab</div>
+                <div>Dom</div>
+              </div>
+              <div class="calendar-grid"></div>
+              <div class="widget-footer">
+                <p class="selected-date-msg">
+                  Seleziona una data per vedere disponibilità
+                </p>
+              </div>
+            </div>
+
+            <button class="btn-prenota-large" onclick="prenota(0)">
+              PRENOTA ORA
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="main-footer">
+        <div class="footer-content">
+          <div class="footer-section brand-info">
+            <div class="logo-container">
+              <span class="logo-wave">Wave</span><span class="logo-to">To</span
+              ><span class="logo-go">Go</span>
+            </div>
+            <p>
+              Noleggio gommoni d'eccellenza. Esplora le coste più belle con il
+              massimo comfort e sicurezza.
+            </p>
+          </div>
+  
+          <div class="footer-section">
+            <h4>Contatti</h4>
+            <ul>
+              <li>
+                <i class="fas fa-location-dot"></i> Porto di [Inserisci Nome
+                Porto]
+              </li>
+              <li><i class="fas fa-phone"></i> +39 324 683 0501</li>
+              <li><i class="fas fa-envelope"></i> info@wavetogo.it</li>
+            </ul>
+          </div>
+  
+          <div class="footer-section">
+            <h4>Legale</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="#">Termini e Condizioni</a></li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="footer-bottom">
+          <p>&copy; 2024 WaveToGo - Tutti i diritti riservati.</p>
+          <p>P.IVA 01234567890 | [Inserisci Ragione Sociale]</p>
+        </div>
+    </div>
+    </div>
+
+    <div id="booking-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">CONFERMA PRENOTAZIONE</div>
+        <div class="modal-body" id="modal-summary">
+          </div>
+        <div class="modal-footer">
+          <button class="btn-modal-close" onclick="closeModal()">Annulla</button>
+          <button class="btn-modal-confirm" id="confirm-booking-btn">Conferma su WhatsApp</button>
+        </div>
+      </div>
+    </div>
 
     <nav class="bottom-nav">
-      <div class="nav-item active" onclick="setActive(this)">
+      <div class="nav-item active" >
         <i class="fas fa-home"></i><span class="nav-txt">Home</span>
       </div>
-      <div class="nav-item" onclick="setActive(this)">
+      <div class="nav-item" >
         <i class="fas fa-ship"></i><span class="nav-txt">Flotta</span>
       </div>
-      <div class="nav-item" onclick="setActive(this)">
+      <div class="nav-item">
         <i class="far fa-map"></i><span class="nav-txt">Itinerari</span>
       </div>
-      <div class="nav-item" onclick="setActive(this)">
+      <div class="nav-item" >
         <i class="far fa-comment"></i><span class="nav-txt">Chat</span>
       </div>
-      <div class="nav-item" onclick="setActive(this)">
+      <div class="nav-item" >
         <i class="far fa-user-circle"></i><span class="nav-txt">Profilo</span>
       </div>
     </nav>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
-    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
+    <script
+      src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./index.js"></script>
   </body>
 </html>
