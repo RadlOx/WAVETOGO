@@ -188,8 +188,15 @@ body {
   border-radius: 50%;
   display: flex;
   align-items: center;
+  margin-left: 10px;
   justify-content: center;
   cursor: pointer;
+}
+.icon-box:last-child{
+    width: auto;
+    padding: 0 10px;
+    border-radius: 10px;
+    gap: 7px;
 }
 .icon-marker {
   background: rgba(245, 166, 35, 0.15);
@@ -223,6 +230,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  padding:0 0 0 15px;
   margin-bottom: 20px;
 }
 
@@ -270,7 +278,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 5px;
   border-bottom: 1px solid #eee;
 }
 .extra-row:last-child {

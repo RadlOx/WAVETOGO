@@ -3,23 +3,45 @@ const monthsNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno
 const daysNames = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
 
 // --- FUNZIONI INTERFACCIA ---
+
+// Gestione menu lingue (Estetico)
 function toggleLangMenu() { 
-    // Mantenuta per compatibilità HTML se presente il bottone, ma svuotata della logica lingue
     const menu = document.getElementById("lang-menu");
     if(menu) menu.classList.toggle("show"); 
 }
 
-function toggleDetailsAndReset(idx) {
-    const card = document.querySelectorAll('.boat-card')[idx];
-    const ext = card.querySelector(".boat-details-extended");
-    const arrow = card.querySelector(".arrow-toggle");
-    ext.classList.toggle("open");
-    arrow.classList.toggle("rotate-icon");
-    // RIMOSSO resetExtrasOnly(idx) per mantenere le scelte dell'utente alla chiusura
+// Cambia la bandiera nell'header e forza il rendering grafico immediato
+function changeLanguage(langCode, flagEmoji) {
+    const display = document.getElementById("current-lang");
+    if (display) {
+        display.innerHTML = flagEmoji;
+        if (typeof twemoji !== 'undefined') {
+            twemoji.parse(display, {
+                folder: 'svg',
+                ext: '.svg'
+            });
+        }
+    }
+    const menu = document.getElementById("lang-menu");
+    if (menu) menu.classList.remove("show");
 }
 
+// Toggle dettagli barca (Non resetta più le checkbox)
+function toggleDetailsAndReset(idx) {
+    const card = document.querySelectorAll('.boat-card')[idx];
+    if(!card) return;
+    const ext = card.querySelector(".boat-details-extended");
+    const arrow = card.querySelector(".arrow-toggle");
+    if(ext && arrow) {
+        ext.classList.toggle("open");
+        arrow.classList.toggle("rotate-icon");
+    }
+}
+
+// Reset manuale degli extra
 function resetExtrasOnly(idx) {
     const card = document.querySelectorAll('.boat-card')[idx];
+    if(!card) return;
     card.querySelectorAll('.extra-checkbox').forEach(cb => { cb.checked = false; });
     calculateTotalWithExtras(idx);
 }
@@ -39,6 +61,7 @@ let selectedDaysGlobal = [null, null, null, null, null];
 
 function calculateTotalWithExtras(idx) {
     const card = document.querySelectorAll('.boat-card')[idx];
+    if(!card) return;
     const msgEl = card.querySelector('.selected-date-msg');
     
     if (selectedDaysGlobal[idx] === null) {
@@ -62,20 +85,18 @@ function calculateTotalWithExtras(idx) {
 
 function renderCalendar(idx) {
     const card = document.querySelectorAll('.boat-card')[idx];
+    if(!card) return;
     const monthIndex = currentDates[idx].getMonth();
     const year = currentDates[idx].getFullYear();
     const container = card.querySelector('.calendar-grid');
     
-    // Aggiorna Mese/Anno
     card.querySelector('.month-year-display').innerText = `${monthsNames[monthIndex]} ${year}`;
     
-    // Traduzione Giorni fisso in Italiano
-    const weekdaysContainer = card.querySelector(".weekdays-container") || card.querySelector(".calendar-weekdays");
+    const weekdaysContainer = card.querySelector(".weekdays-container") || card.querySelector(".weekdays-grid");
     if(weekdaysContainer) {
         weekdaysContainer.innerHTML = daysNames.map(d => `<div>${d}</div>`).join('');
     }
 
-    // Gestione Prezzi Stagionali
     const isSelectableMonth = monthIndex >= 4 && monthIndex <= 8;
     const base = boatBasePrices[idx];
     const mult = seasonMultipliers[monthIndex] || 0;
@@ -128,9 +149,6 @@ function prenota(idx) {
     const card = document.querySelectorAll('.boat-card')[idx];
     const boatName = card.querySelector('h3').innerText;
     const monthIndex = currentDates[idx].getMonth();
-    const base = boatBasePrices[idx];
-    const mult = seasonMultipliers[monthIndex] || 1;
-    const dailyPrice = Math.round(base * mult);
     
     let selectedExtras = [];
     let extrasTotal = 0;
@@ -139,24 +157,49 @@ function prenota(idx) {
         selectedExtras.push(cb.getAttribute('data-name'));
     });
     
+    const base = boatBasePrices[idx];
+    const mult = seasonMultipliers[monthIndex] || 1;
+    const dailyPrice = Math.round(base * mult);
     const finalPrice = dailyPrice + extrasTotal;
+    
     const dateStr = `${selectedDaysGlobal[idx]} ${monthsNames[monthIndex]} 2024`;
     const extrasStr = selectedExtras.length > 0 ? `%0AExtras: ${selectedExtras.join(', ')}` : "";
     
     const message = `Ciao WaveToGo! Vorrei prenotare il ${boatName} per il giorno ${dateStr}.%0APrezzo Totale: €${finalPrice}${extrasStr}`;
     const whatsappUrl = `https://wa.me/393246830501?text=${message}`;
     
-    alert("Reindirizzamento a WhatsApp per confermare...");
     window.open(whatsappUrl, '_blank');
 }
 
-// Gestione chiusura menu
-window.onclick = (e) => { 
-    if (document.getElementById("lang-menu") && !e.target.closest('.lang-selector')) { 
-        document.getElementById("lang-menu").classList.remove("show"); 
+// Chiusura menu se si clicca fuori
+window.addEventListener('click', (e) => { 
+    const menu = document.getElementById("lang-menu");
+    if (menu && !e.target.closest('.lang-selector')) { 
+        menu.classList.remove("show"); 
     } 
-};
+});
 
-// Inizializzazione
-for(let i=0; i<5; i++) { renderCalendar(i); }
-twemoji.parse(document.body);
+// --- INIZIALIZZAZIONE POTENZIATA PER BANDIERE ---
+function initApp() {
+    // 1. Renderizza i calendari
+    for(let i=0; i<5; i++) { 
+        renderCalendar(i); 
+    }
+    
+    // 2. Forza Twemoji con ritardo per garantire il rendering su Windows
+    const runTwemoji = () => {
+        if (typeof twemoji !== 'undefined') {
+            twemoji.parse(document.body, {
+                folder: 'svg',
+                ext: '.svg'
+            });
+        }
+    };
+
+    runTwemoji(); // Primo tentativo istantaneo
+    setTimeout(runTwemoji, 300); // Secondo tentativo dopo 300ms
+    setTimeout(runTwemoji, 1000); // Terzo tentativo dopo 1s (sicurezza estrema)
+}
+
+// Avvia tutto al caricamento della finestra
+window.onload = initApp;

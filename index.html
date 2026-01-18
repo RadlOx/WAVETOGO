@@ -28,7 +28,7 @@
       </div>
       <div class="lang-selector">
         <div class="header-icon" id="current-lang" onclick="toggleLangMenu()">
-          🇮🇹
+          &#x1F1EE;&#x1F1F9;
         </div>
         <div class="lang-dropdown" id="lang-menu">
           <div onclick="changeLanguage('it', '🇮🇹')">🇮🇹 Italiano</div>
@@ -61,104 +61,82 @@
                 <div class="icon-box icon-refresh" onclick="resetExtrasOnly(0)">
                   <i class="fas fa-sync-alt"></i>
                 </div>
-                <div
-                  class="icon-box icon-marker" onclick="toggleDetailsAndReset(0)">
+                <div class="icon-box icon-marker" onclick="toggleDetailsAndReset(0)">
+                  <span><i class="fa-solid fa-list"></i></span>
                   <i class="fas fa-arrow-down arrow-toggle"></i>
                 </div>
               </div>
             </div>
+
             <div class="boat-details-extended">
               <div class="details-grid">
                 <div class="detail-item">
-                  <i class="fas fa-tachometer-alt"></i
-                  ><span class="det-txt">Motore: 40/70cv</span>
+                  <i class="fas fa-tachometer-alt"></i><span class="det-txt">Motore: 40/70cv</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-users"></i
-                  ><span class="det-txt">Portata: 8 Persone</span>
+                  <i class="fas fa-users"></i><span class="det-txt">Portata: 8 Persone</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-shower"></i
-                  ><span class="det-txt">Doccetta</span>
+                  <i class="fas fa-music"></i><span class="det-txt">Impianto Audio</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-music"></i
-                  ><span class="det-txt">Impianto Audio</span>
+                  <i class="fas fa-shower"></i><span class="det-txt">Doccetta</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-umbrella-beach"></i
-                  ><span class="det-txt">Tendalino</span>
+                  <i class="fas fa-umbrella-beach"></i><span class="det-txt">Tendalino</span>
                 </div>
                 <div class="detail-item">
-                  <i class="fas fa-charging-station"></i
-                  ><span class="det-txt">Prese USB</span>
+                  <i class="fas fa-charging-station"></i><span class="det-txt">Prese USB</span>
                 </div>
               </div>
+
               <div class="extras-container">
                 <div class="extras-title">Personalizza il tuo viaggio</div>
+                
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-gas-pump"></i>
                     <span class="extra-txt">Benzina Extra ( Tanica* )</span>
                   </div>
                   <div style="display: flex; align-items: center">
-                    <span class="extra-price-tag">+€30</span
-                    ><input
-                      type="checkbox"
-                      class="extra-checkbox"
-                      data-price="30"
-                      data-name="Benzina"
-                      onchange="calculateTotalWithExtras(0)"
-                    />
+                    <span class="extra-price-tag">+€30</span>
+                    <input type="checkbox" class="extra-checkbox" data-price="30" data-name="Benzina" onchange="calculateTotalWithExtras(0)" />
                   </div>
                 </div>
+
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-box"></i>
                     <span class="extra-txt">Ghiacciaia *</span>
                   </div>
                   <div style="display: flex; align-items: center">
-                    <span class="extra-price-tag">+€15</span
-                    ><input
-                      type="checkbox"
-                      class="extra-checkbox"
-                      data-price="15"
-                      data-name="Ghiacciaia"
-                      onchange="calculateTotalWithExtras(0)"
-                    />
+                    <span class="extra-price-tag">+€15</span>
+                    <input type="checkbox" class="extra-checkbox" data-price="15" data-name="Ghiacciaia" onchange="calculateTotalWithExtras(0)" />
                   </div>
                 </div>
+
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-mask"></i>
                     <span class="extra-txt">Kit Snorkeling *</span>
                   </div>
                   <div style="display: flex; align-items: center">
-                    <span class="extra-price-tag">+€10</span
-                    ><input
-                      type="checkbox"
-                      class="extra-checkbox"
-                      data-price="10"
-                      data-name="Snorkeling"
-                      onchange="calculateTotalWithExtras(0)"
-                    />
+                    <span class="extra-price-tag">+€10</span>
+                    <input type="checkbox" class="extra-checkbox" data-price="10" data-name="Snorkeling" onchange="calculateTotalWithExtras(0)" />
                   </div>
                 </div>
+
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-camera-retro"></i>
                     <span class="extra-txt">Set GoPro *</span>
                   </div>
                   <div style="display: flex; align-items: center">
-                    <span class="extra-price-tag">+€100</span
-                   ><input
-                      type="checkbox"
-                      class="extra-checkbox"
-                      data-price="100"
-                      data-name="Skipper"
-                      onchange="calculateTotalWithExtras(0)"/>
+                    <span class="extra-price-tag">+€100</span>
+                    <input type="checkbox" class="extra-checkbox" data-price="100" data-name="Set GoPro" onchange="calculateTotalWithExtras(0)"/>
                   </div>
                 </div>
+
                 <br>
                 <p class="note">
                     <strong>NOTA BENE (*):</strong> Gli accessori contrassegnati sono forniti a noleggio. 
@@ -167,7 +145,9 @@
                 </p>
               </div>
             </div>
+
             <br />
+
             <div class="booking-widget">
               <div class="widget-header">
                 <div class="arrow-btn" onclick="changeMonth(-1, 0)">
@@ -179,13 +159,7 @@
                 </div>
               </div>
               <div class="weekdays-grid">
-                <div>Lun</div>
-                <div>Mar</div>
-                <div>Mer</div>
-                <div>Gio</div>
-                <div>Ven</div>
-                <div>Sab</div>
-                <div>Dom</div>
+                <div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div><div>Dom</div>
               </div>
               <div class="calendar-grid"></div>
               <div class="widget-footer">
@@ -194,346 +168,8 @@
                 </p>
               </div>
             </div>
+
             <button class="btn-prenota-large" onclick="prenota(0)">
-              PRENOTA ORA
-            </button>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <div class="boat-card" data-index="1">
-            <div class="boat-image-placeholder">
-              <img src="./image.png" alt="Gommone" />
-            </div>
-            <div class="boat-info-row">
-              <div class="boat-details">
-                <h3>Salpa Soleil 23</h3>
-                <p class="boat-price">
-                  <span class="txt-from">Da</span>
-                  <strong class="price-display">€200</strong>
-                  <span class="txt-perday">/gg</span>
-                </p>
-              </div>
-              <div class="boat-icons-row" style="display: flex; gap: 8px">
-                <div class="icon-box icon-refresh" onclick="resetExtrasOnly(1)">
-                  <i class="fas fa-sync-alt"></i>
-                </div>
-                <div
-                  class="icon-box icon-marker"
-                  onclick="toggleDetailsAndReset(1)"
-                >
-                  <i class="fas fa-arrow-down arrow-toggle"></i>
-                </div>
-              </div>
-            </div>
-            <div class="boat-details-extended">
-              <div class="details-grid">
-                <div class="detail-item">
-                  <i class="fas fa-tachometer-alt"></i
-                  ><span class="det-txt">Motore: 150cv</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-users"></i
-                  ><span class="det-txt">Portata: 10 Persone</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-shower"></i
-                  ><span class="det-txt">Doccetta</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-music"></i
-                  ><span class="det-txt">Impianto Audio</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-umbrella-beach"></i
-                  ><span class="det-txt">Tendalino</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-charging-station"></i
-                  ><span class="det-txt">Prese USB</span>
-                </div>
-              </div>
-              <div class="extras-container">
-                <div class="extras-title">Personalizza il tuo viaggio</div>
-                <div class="extra-row">
-                  <div class="extra-label">
-                    <i class="fas fa-gas-pump"></i>
-                    <span class="extra-txt">Benzina Extra</span>
-                  </div>
-                  <div style="display: flex; align-items: center">
-                    <span class="extra-price-tag">+€30</span
-                    ><input
-                      type="checkbox"
-                      class="extra-checkbox"
-                      data-price="30"
-                      data-name="Benzina"
-                      onchange="calculateTotalWithExtras(1)"
-                    />
-                  </div>
-                </div>
-                <div class="extra-row">
-                  <div class="extra-label">
-                    <i class="fas fa-box"></i>
-                    <span class="extra-txt">Ghiacciaia</span>
-                  </div>
-                  <div style="display: flex; align-items: center">
-                    <span class="extra-price-tag">+€15</span
-                    ><input
-                      type="checkbox"
-                      class="extra-checkbox"
-                      data-price="15"
-                      data-name="Ghiacciaia"
-                      onchange="calculateTotalWithExtras(1)"
-                    />
-                  </div>
-                </div>
-                <div class="extra-row">
-                  <div class="extra-label">
-                    <i class="fas fa-mask"></i>
-                    <span class="extra-txt">Kit Snorkeling</span>
-                  </div>
-                  <div style="display: flex; align-items: center">
-                    <span class="extra-price-tag">+€10</span
-                    ><input
-                      type="checkbox"
-                      class="extra-checkbox"
-                      data-price="10"
-                      data-name="Snorkeling"
-                      onchange="calculateTotalWithExtras(1)"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br />
-            <div class="booking-widget">
-              <div class="widget-header">
-                <div class="arrow-btn" onclick="changeMonth(-1, 1)">
-                  <i class="fas fa-chevron-left"></i>
-                </div>
-                <h4 class="month-year-display">Maggio 2024</h4>
-                <div class="arrow-btn" onclick="changeMonth(1, 1)">
-                  <i class="fas fa-chevron-right"></i>
-                </div>
-              </div>
-              <div class="weekdays-grid">
-                <div>Lun</div>
-                <div>Mar</div>
-                <div>Mer</div>
-                <div>Gio</div>
-                <div>Ven</div>
-                <div>Sab</div>
-                <div>Dom</div>
-              </div>
-              <div class="calendar-grid"></div>
-              <div class="widget-footer">
-                <p class="selected-date-msg">
-                  Seleziona una data per vedere disponibilità
-                </p>
-              </div>
-            </div>
-            <button class="btn-prenota-large" onclick="prenota(1)">
-              PRENOTA ORA
-            </button>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <div class="boat-card" data-index="2">
-            <div class="boat-image-placeholder">
-              <img src="./image.png" alt="Gommone" />
-            </div>
-            <div class="boat-info-row">
-              <div class="boat-details">
-                <h3>Jolly Drive 600</h3>
-                <p class="boat-price">
-                  <span class="txt-from">Da</span>
-                  <strong class="price-display">€130</strong>
-                  <span class="txt-perday">/gg</span>
-                </p>
-              </div>
-              <div class="boat-icons-row" style="display: flex; gap: 8px">
-                <div class="icon-box icon-refresh" onclick="resetExtrasOnly(2)">
-                  <i class="fas fa-sync-alt"></i>
-                </div>
-                <div
-                  class="icon-box icon-marker"
-                  onclick="toggleDetailsAndReset(2)"
-                >
-                  <i class="fas fa-arrow-down arrow-toggle"></i>
-                </div>
-              </div>
-            </div>
-            <div class="boat-details-extended">
-              <div class="details-grid">
-                <div class="detail-item">
-                  <i class="fas fa-tachometer-alt"></i
-                  ><span class="det-txt">Motore: 40cv</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-users"></i
-                  ><span class="det-txt">Portata: 6 Persone</span>
-                </div>
-              </div>
-            </div>
-            <br />
-            <div class="booking-widget">
-              <div class="widget-header">
-                <div class="arrow-btn" onclick="changeMonth(-1, 2)">
-                  <i class="fas fa-chevron-left"></i>
-                </div>
-                <h4 class="month-year-display">Maggio 2024</h4>
-                <div class="arrow-btn" onclick="changeMonth(1, 2)">
-                  <i class="fas fa-chevron-right"></i>
-                </div>
-              </div>
-              <div class="weekdays-grid">
-                <div>Lun</div>
-                <div>Mar</div>
-                <div>Mer</div>
-                <div>Gio</div>
-                <div>Ven</div>
-                <div>Sab</div>
-                <div>Dom</div>
-              </div>
-              <div class="calendar-grid"></div>
-              <div class="widget-footer">
-                <p class="selected-date-msg">
-                  Seleziona una data per vedere disponibilità
-                </p>
-              </div>
-            </div>
-            <button class="btn-prenota-large" onclick="prenota(2)">
-              PRENOTA ORA
-            </button>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <div class="boat-card" data-index="3">
-            <div class="boat-image-placeholder">
-              <img src="./image.png" alt="Gommone" />
-            </div>
-            <div class="boat-info-row">
-              <div class="boat-details">
-                <h3>Ranieri Cayman 21</h3>
-                <p class="boat-price">
-                  <span class="txt-from">Da</span>
-                  <strong class="price-display">€180</strong>
-                  <span class="txt-perday">/gg</span>
-                </p>
-              </div>
-              <div class="boat-icons-row" style="display: flex; gap: 8px">
-                <div class="icon-box icon-refresh" onclick="resetExtrasOnly(3)">
-                  <i class="fas fa-sync-alt"></i>
-                </div>
-                <div
-                  class="icon-box icon-marker"
-                  onclick="toggleDetailsAndReset(3)"
-                >
-                  <i class="fas fa-arrow-down arrow-toggle"></i>
-                </div>
-              </div>
-            </div>
-            <div class="boat-details-extended">
-              <div class="details-grid">
-                <div class="detail-item">
-                  <i class="fas fa-tachometer-alt"></i
-                  ><span class="det-txt">Motore: 40cv</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-users"></i
-                  ><span class="det-txt">Portata: 6 Persone</span>
-                </div>
-              </div>
-            </div>
-            <br />
-            <div class="booking-widget">
-              <div class="widget-header">
-                <div class="arrow-btn" onclick="changeMonth(-1, 3)">
-                  <i class="fas fa-chevron-left"></i>
-                </div>
-                <h4 class="month-year-display">Maggio 2024</h4>
-                <div class="arrow-btn" onclick="changeMonth(1, 3)">
-                  <i class="fas fa-chevron-right"></i>
-                </div>
-              </div>
-              <div class="weekdays-grid">
-                <div>Lun</div>
-                <div>Mar</div>
-                <div>Mer</div>
-                <div>Gio</div>
-                <div>Ven</div>
-                <div>Sab</div>
-                <div>Dom</div>
-              </div>
-              <div class="calendar-grid"></div>
-              <div class="widget-footer">
-                <p class="selected-date-msg">
-                  Seleziona una data per vedere disponibilità
-                </p>
-              </div>
-            </div>
-            <button class="btn-prenota-large" onclick="prenota(3)">
-              PRENOTA ORA
-            </button>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <div class="boat-card" data-index="4">
-            <div class="boat-image-placeholder">
-              <img src="./image.png" alt="Gommone" />
-            </div>
-            <div class="boat-info-row">
-              <div class="boat-details">
-                <h3>Zodiac Medline 7.5</h3>
-                <p class="boat-price">
-                  <span class="txt-from">Da</span>
-                  <strong class="price-display">€250</strong>
-                  <span class="txt-perday">/gg</span>
-                </p>
-              </div>
-              <div class="boat-icons-row" style="display: flex; gap: 8px">
-                <div class="icon-box icon-refresh" onclick="resetExtrasOnly(4)">
-                  <i class="fas fa-sync-alt"></i>
-                </div>
-                <div
-                  class="icon-box icon-marker"
-                  onclick="toggleDetailsAndReset(4)"
-                >
-                  <i class="fas fa-arrow-down arrow-toggle"></i>
-                </div>
-              </div>
-            </div>
-            <br />
-            <div class="booking-widget">
-              <div class="widget-header">
-                <div class="arrow-btn" onclick="changeMonth(-1, 4)">
-                  <i class="fas fa-chevron-left"></i>
-                </div>
-                <h4 class="month-year-display">Maggio 2024</h4>
-                <div class="arrow-btn" onclick="changeMonth(1, 4)">
-                  <i class="fas fa-chevron-right"></i>
-                </div>
-              </div>
-              <div class="weekdays-grid">
-                <div>Lun</div>
-                <div>Mar</div>
-                <div>Mer</div>
-                <div>Gio</div>
-                <div>Ven</div>
-                <div>Sab</div>
-                <div>Dom</div>
-              </div>
-              <div class="calendar-grid"></div>
-              <div class="widget-footer">
-                <p class="selected-date-msg">
-                  Seleziona una data per vedere disponibilità
-                </p>
-              </div>
-            </div>
-            <button class="btn-prenota-large" onclick="prenota(4)">
               PRENOTA ORA
             </button>
           </div>
@@ -559,10 +195,9 @@
       </div>
     </nav>
 
-    <script
-      src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js"
-      crossorigin="anonymous"
-    ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
   </body>
 </html>
