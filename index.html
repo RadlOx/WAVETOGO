@@ -56,7 +56,7 @@
             right: 0;
             top: 40px;
             background-color: var(--white);
-            min-width: 140px;
+            min-width: 160px;
             box-shadow: var(--shadow);
             border-radius: 12px;
             z-index: 1001;
@@ -89,7 +89,7 @@
             padding-bottom: 100px;
         }
 
-        /* --- BOAT CARD & DETTAGLI ESTESI AGGIORNATI --- */
+        /* --- BOAT CARD & DETTAGLI ESTESI --- */
         .boat-card {
             background-color: var(--white);
             border-radius: var(--radius);
@@ -124,7 +124,6 @@
         .icon-marker { background: rgba(245, 166, 35, 0.15); color: var(--accent-orange); }
         .icon-refresh { background: rgba(10, 30, 59, 0.1); color: var(--primary-dark); }
 
-        /* Animazione armoniosa aggiornata */
         .boat-details-extended {
             max-height: 0;
             opacity: 0;
@@ -258,7 +257,10 @@
             <div class="lang-dropdown" id="lang-menu">
                 <div onclick="changeLanguage('it', '🇮🇹')">🇮🇹 Italiano</div>
                 <div onclick="changeLanguage('en', '🇬🇧')">🇬🇧 English</div>
+                <div onclick="changeLanguage('de', '🇩🇪')">🇩🇪 Deutsch</div>
+                <div onclick="changeLanguage('fr', '🇫🇷')">🇫🇷 Français</div>
                 <div onclick="changeLanguage('es', '🇪🇸')">🇪🇸 Español</div>
+                <div onclick="changeLanguage('nl', '🇳🇱')">🇳🇱 Nederlands</div>
             </div>
         </div>
     </header>
@@ -321,7 +323,7 @@
 
     <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <script>
-        // --- LOGICA TRADUZIONE ---
+        // --- LOGICA TRADUZIONE ESTESA ---
         let currentLang = 'it';
         const translations = {
             it: {
@@ -344,6 +346,26 @@
                 alertWa: "Redirecting to WhatsApp to confirm...",
                 details: ["Engine: 40/70hp", "Capacity: 8 Pax", "Shower", "Audio System", "Awning", "USB Plugs"]
             },
+            de: {
+                months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+                days: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+                nav: ["Home", "Flotte", "Routen", "Chat", "Profil"],
+                from: "Ab", perDay: "/Tag", selectDate: "Datum wählen, um Verfügbarkeit zu prüfen",
+                btn: "JETZT BUCHEN", chosen: "Gewählt", total: "Gesamtpreis",
+                alertDate: "Bitte wählen Sie einen Tag zwischen Mai und September.",
+                alertWa: "Weiterleitung zu WhatsApp...",
+                details: ["Motor: 40/70PS", "Kapazität: 8 Pers.", "Dusche", "Audiosystem", "Sonnendach", "USB-Anschlüsse"]
+            },
+            fr: {
+                months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+                days: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+                nav: ["Accueil", "Flotte", "Itinéraires", "Chat", "Profil"],
+                from: "À partir de", perDay: "/jour", selectDate: "Choisissez une date pour la disponibilité",
+                btn: "RÉSERVER", chosen: "Choisi", total: "Prix total",
+                alertDate: "Veuillez choisir un jour entre Mai et Septembre.",
+                alertWa: "Redirection vers WhatsApp...",
+                details: ["Moteur: 40/70cv", "Capacité: 8 Pers.", "Douchette", "Système Audio", "Taud", "Prises USB"]
+            },
             es: {
                 months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                 days: ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"],
@@ -353,6 +375,16 @@
                 alertDate: "Por favor, seleccione un día válido entre mayo y septiembre.",
                 alertWa: "Redirigiendo a WhatsApp para confirmar...",
                 details: ["Motor: 40/70cv", "Capacidad: 8 Pers.", "Ducha", "Sistema de Audio", "Toldo", "Tomas USB"]
+            },
+            nl: {
+                months: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
+                days: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"],
+                nav: ["Home", "Vloot", "Routes", "Chat", "Profiel"],
+                from: "Vanaf", perDay: "/dag", selectDate: "Selecteer een datum voor beschikbaarheid",
+                btn: "NU BOEKEN", chosen: "Gekozen", total: "Totaalprijs",
+                alertDate: "Selecteer een dag tussen mei en september.",
+                alertWa: "Doorsturen naar WhatsApp...",
+                details: ["Motor: 40/70pk", "Capaciteit: 8 Pers.", "Douche", "Audiosysteem", "Zonnescherm", "USB-poorten"]
             }
         };
 
@@ -389,7 +421,6 @@
             twemoji.parse(document.body);
         }
 
-        // --- LOGICA CALENDARIO AGGIORNATA ---
         const seasonPrices = { 4: 150, 5: 200, 6: 280, 7: 350, 8: 180 };
         let currentDate = new Date(2024, 4, 1); 
         let selectedDayElement = null;
@@ -402,7 +433,6 @@
             
             document.getElementById('month-year-display').innerText = `${t.months[monthIndex]} ${year}`;
             
-            // Definiamo se il mese è selezionabile (Maggio index 4, Settembre index 8)
             const isSelectableMonth = monthIndex >= 4 && monthIndex <= 8;
             const currentPrice = seasonPrices[monthIndex] || 0;
             
