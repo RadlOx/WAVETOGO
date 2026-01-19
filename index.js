@@ -463,7 +463,7 @@ function getCheckoutTemplate({
         <div class="sticky-header">
             <div class="header-top">
                 <div>
-                    <div style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.8; letter-spacing: 1px;">Stai prenotando</div>
+                    <div style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.8;margin-top:20px; letter-spacing: 1px;">Stai prenotando</div>
                     <div style="font-weight: 700; font-size: 1.1rem;">${boatName}</div>
                 </div>
                 <button onclick="closeModal()" style="background: rgba(255,255,255,0.15); border: none; border-radius: 50%; width: 36px; height: 36px; color: white; cursor:pointer; display:flex; align-items:center; justify-content:center;">
@@ -539,6 +539,7 @@ function getCheckoutTemplate({
             <div style="text-align:center; font-size: 0.7rem; color: #b2bec3; margin-top: 10px;">
                 <i class="fas fa-lock"></i> I tuoi dati sono protetti da crittografia SSL
             </div>
+            <br>
             <br>
         </div>
 
