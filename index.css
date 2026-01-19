@@ -462,15 +462,13 @@ body {
 }
 .modal-content {
   background: white;
-  width: 90%; /* Largo il 90% */
-  height: 90%; /* Alto l'80% */
-  max-width: 500px; /* Limite per desktop */
+  width: 100%; /* Largo il 100% */
+  height: 100%; /* Alto l'100% */
   display: flex;
   flex-direction: column; /* Permette al contenuto di scorrere se lungo */
 }
 
 .modal-body {
-  padding: 20px;
   flex: 1;
   overflow-y: auto; /* Se il contenuto è tanto, compare la scrollbar interna */
   -webkit-overflow-scrolling: touch;
