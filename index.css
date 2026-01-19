@@ -87,19 +87,23 @@ body {
 .lang-dropdown {
   display: none;
   position: absolute;
-  right: 0;
-  top: 45px;
+  right: -8px;
+  top: 35px;
   background-color: var(--white);
   min-width: 160px;
   box-shadow: var(--shadow);
   border-radius: 12px;
+  padding: 8px 0;
   z-index: 1001;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .lang-dropdown div {
   color: var(--primary-dark);
-  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -429,7 +433,7 @@ body {
 }
 
 .bottom-nav {
-  background-color: var(--primary-dark);
+  background-color: var(--bg-solid);
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -445,7 +449,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #bbb;
+  color: var(--text-light);
   font-size: 0.7rem;
   font-weight: 600;
   cursor: pointer;
@@ -456,7 +460,7 @@ body {
   margin-bottom: 4px;
 }
 .nav-item.active {
-  color: var(--bg-solid);
+  color: var(--primary-dark);
 }
 .nav-item.active i {
   color: var(--accent-orange);

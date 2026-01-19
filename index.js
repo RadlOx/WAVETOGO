@@ -12,6 +12,45 @@ let selectedDayElements = Array(5).fill(null);
 let selectedDaysGlobal = Array(5).fill(null);
 
 
+/**
+ * Versione specifica per strutture con scroll interno
+ */
+const mainContainer = document.querySelector('.main-content');
+const bottomNav = document.querySelector('.bottom-nav');
+
+if (mainContainer && bottomNav) {
+    mainContainer.addEventListener('scroll', function() {
+        // Calcola quanto hai scrollato dentro il div
+        const scrollTop = mainContainer.scrollTop;
+        const scrollHeight = mainContainer.scrollHeight - mainContainer.clientHeight;
+        const percentage = (scrollTop / scrollHeight) * 100;
+
+        // Recupera l'elemento attivo corrente
+        const activeItem = bottomNav.querySelector('.nav-item.active');
+
+        // Soglia al 20%
+        if (percentage > 20) {
+            bottomNav.style.setProperty('background-color', 'var(--primary-dark)', 'important');
+            bottomNav.style.setProperty('color', 'var(--white)', 'important');
+            bottomNav.style.backdropFilter = "blur(10px)"; // Effetto moderno
+            bottomNav.style.transition = "all 0.4s ease";
+            
+            // Applica colore bianco all'elemento attivo per contrasto sul blu scuro
+            if (activeItem) {
+                activeItem.style.setProperty('color', '#ffffff', 'important');
+            }
+        } else {
+            bottomNav.style.setProperty('background-color', 'rgba(255, 255, 255, 0.95)', 'important');
+            bottomNav.style.backdropFilter = "none";
+            
+            // Ripristina il colore originale all'elemento attivo
+            if (activeItem) {
+                activeItem.style.setProperty('color', 'var(--primary-dark)', 'important');
+            }
+        }
+    });
+}
+
 // --- FUNZIONI INTERFACCIA ESISTENTI ---
 
 function toggleLangMenu() { 
