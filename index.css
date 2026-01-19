@@ -28,14 +28,10 @@ body {
   position: relative;
 }
 
-/* --- PAGE STRUCTURE --- */
-#page2 {
-  display: none;
-}
 /* --- STILI CAROSELLO --- */
 .carousel-viewport {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   display: flex;
   padding: 20px 0;
@@ -72,6 +68,8 @@ body {
   font-size: 1.2rem;
   cursor: pointer;
 }
+
+/*TRADUZIONE*/
 
 .lang-dropdown::after {
   content: "";
@@ -431,6 +429,29 @@ body {
 .btn-prenota-large:active {
   transform: scale(0.98);
 }
+#alert {
+  display: none;
+  color: red;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+  overflow: hidden;
+  padding: 10px;
+  text-transform: uppercase;
+  position: relative;
+  background-color: rgba(255, 0, 0, 0.096);
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+#alert i{
+  margin-right: 6px;
+  font-size: 3.3rem;
+  position: absolute;
+  left: 10px;
+  opacity: 0.1;
+  transform: rotate(-15deg);
+  bottom: -10px;
+}
 
 .modal-header {
   background: var(--primary-dark);
@@ -444,7 +465,6 @@ body {
   width: 90%; /* Largo il 90% */
   height: 90%; /* Alto l'80% */
   max-width: 500px; /* Limite per desktop */
-  border-radius: 15px;
   display: flex;
   flex-direction: column; /* Permette al contenuto di scorrere se lungo */
 }
@@ -469,13 +489,10 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 20px;
 }
 .modal-content {
-  background: white;
   width: 100%;
-  max-width: 400px;
-  border-radius: 25px;
+  height: 100vh;
   overflow: hidden;
   animation: modalSlideUp 0.3s ease-out;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -490,24 +507,19 @@ body {
     opacity: 1;
   }
 }
-.modal-header {
-  background: #1a2a6c;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  font-weight: 700;
-}
 .modal-body {
-  padding: 25px;
   color: #333;
   line-height: 1.6;
   font-family: "Montserrat", sans-serif;
 }
 .modal-footer {
   display: flex;
-  padding: 15px;
   gap: 10px;
   background: #f9f9f9;
+}
+input:focus {
+    border-color: #1a2a6c !important;
+    box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
 }
 .btn-modal-confirm {
   flex: 1;
