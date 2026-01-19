@@ -463,10 +463,10 @@ function getCheckoutTemplate({
         <div class="sticky-header">
             <div class="header-top">
                 <div>
-                    <div style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.8;margin-top:30px; letter-spacing: 1px;">Stai prenotando</div>
+                    <div style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.8;margin-top:35px; letter-spacing: 1px;">Stai prenotando</div>
                     <div style="font-weight: 700; font-size: 1.1rem;">${boatName}</div>
                 </div>
-                <button onclick="closeModal()" style="background: rgba(255,255,255,0.15); border: none; border-radius: 50%;margin-top: 25px; width: 36px; height: 36px; color: white; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+                <button onclick="closeModal()" style="background: rgba(255,255,255,0.15); border: none; border-radius: 50%;margin-top: 35px; width: 36px; height: 36px; color: white; cursor:pointer; display:flex; align-items:center; justify-content:center;">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
