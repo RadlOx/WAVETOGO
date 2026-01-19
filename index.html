@@ -5,46 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WaveToGo - Prenotazione</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="./index.css" />
-    
-    <style>
-      /* Stili necessari per il funzionamento del popup */
-      .modal-overlay {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(4px);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        padding: 20px;
-      }
-      .modal-content {
-        background: white;
-        width: 100%;
-        max-width: 400px;
-        border-radius: 25px;
-        overflow: hidden;
-        animation: modalSlideUp 0.3s ease-out;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      }
-      @keyframes modalSlideUp {
-        from { transform: translateY(40px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-      }
-      .modal-header { background: #1a2a6c; color: white; padding: 20px; text-align: center; font-weight: 700; }
-      .modal-body { padding: 25px; color: #333; line-height: 1.6; font-family: 'Montserrat', sans-serif; }
-      .modal-footer { display: flex; padding: 15px; gap: 10px; background: #f9f9f9; }
-      .btn-modal-confirm { flex: 1; background: #25D366; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; }
-      .btn-modal-close { flex: 1; background: #eee; color: #333; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; }
-    </style>
+
   </head>
   <body>
-
     <header class="app-header">
       <i class="fas fa-bars header-icon"></i>
       <div class="logo-container">
@@ -65,7 +37,7 @@
         </div>
       </div>
     </header>
-<div class="main-content" id="page1">
+    <div class="main-content" id="page1">
       <div class="carousel-viewport" id="boat-carousel">
         <div class="carousel-item">
           <div class="boat-card" data-index="0">
@@ -180,7 +152,7 @@
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-mask"></i>
-                    <span class="extra-txt">Kit Snorkeling *</span>
+                    <span class="extra-txt">Kit snorkeling *</span>
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€10</span>
@@ -188,27 +160,27 @@
                       type="checkbox"
                       class="extra-checkbox"
                       data-price="10"
-                      data-name="Snorkeling"
+                      data-name="Kit snorkeling"
                       onchange="calculateTotalWithExtras(0)"
                     />
                   </div>
                 </div>
 
                 <div class="extra-row">
-                <div class="extra-label">
-                    <i class="fa-solid fa-life-ring"></i> 
+                  <div class="extra-label">
+                    <i class="fa-solid fa-life-ring"></i>
                     <span class="extra-txt">Giochi gonfiabili *</span>
-                </div>
-                <div style="display: flex; align-items: center">
+                  </div>
+                  <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€25</span>
                     <input
-                    type="checkbox"
-                    class="extra-checkbox"
-                    data-price="25" 
-                    data-name="Giochi Gonfiabili"
-                    onchange="calculateTotalWithExtras(0)"
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="25"
+                      data-name="Giochi gonfiabili"
+                      onchange="calculateTotalWithExtras(0)"
                     />
-                </div>
+                  </div>
                 </div>
 
                 <div class="extra-row">
@@ -227,7 +199,6 @@
                     />
                   </div>
                 </div>
-
 
                 <br />
                 <p class="note">
@@ -274,6 +245,7 @@
           </div>
         </div>
       </div>
+
       <div class="main-footer">
         <div class="footer-content">
           <div class="footer-section brand-info">
@@ -286,7 +258,7 @@
               massimo comfort e sicurezza.
             </p>
           </div>
-  
+
           <div class="footer-section">
             <h4>Contatti</h4>
             <ul>
@@ -298,7 +270,7 @@
               <li><i class="fas fa-envelope"></i> info@wavetogo.it</li>
             </ul>
           </div>
-  
+
           <div class="footer-section">
             <h4>Legale</h4>
             <ul>
@@ -308,14 +280,14 @@
             </ul>
           </div>
         </div>
-  
+
         <div class="footer-bottom">
           <p>&copy; 2024 WaveToGo - Tutti i diritti riservati.</p>
           <p>P.IVA 01234567890 | [Inserisci Ragione Sociale]</p>
         </div>
+      </div>
     </div>
-    </div>
-<div class="main-content" id="page2">
+    <div class="main-content" id="page2">
       <div class="carousel-viewport" id="boat-carousel">
         <div class="carousel-item">
           <div class="boat-card" data-index="0">
@@ -379,7 +351,7 @@
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-gas-pump"></i>
-                    <span class="extra-txt">Benzina Extra ( Tanica* )</span>
+                    <span class="extra-txt">Benzina extra ( Tanica* )</span>
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€30</span>
@@ -430,7 +402,7 @@
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-mask"></i>
-                    <span class="extra-txt">Kit Snorkeling *</span>
+                    <span class="extra-txt">Kit snorkeling *</span>
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€10</span>
@@ -438,27 +410,27 @@
                       type="checkbox"
                       class="extra-checkbox"
                       data-price="10"
-                      data-name="Snorkeling"
+                      data-name="Kit snorkeling"
                       onchange="calculateTotalWithExtras(0)"
                     />
                   </div>
                 </div>
 
                 <div class="extra-row">
-                <div class="extra-label">
-                    <i class="fa-solid fa-life-ring"></i> 
+                  <div class="extra-label">
+                    <i class="fa-solid fa-life-ring"></i>
                     <span class="extra-txt">Giochi gonfiabili *</span>
-                </div>
-                <div style="display: flex; align-items: center">
+                  </div>
+                  <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€25</span>
                     <input
-                    type="checkbox"
-                    class="extra-checkbox"
-                    data-price="25" 
-                    data-name="Giochi Gonfiabili"
-                    onchange="calculateTotalWithExtras(0)"
+                      type="checkbox"
+                      class="extra-checkbox"
+                      data-price="25"
+                      data-name="Giochi gonfiabili"
+                      onchange="calculateTotalWithExtras(0)"
                     />
-                </div>
+                  </div>
                 </div>
 
                 <div class="extra-row">
@@ -477,7 +449,6 @@
                     />
                   </div>
                 </div>
-
 
                 <br />
                 <p class="note">
@@ -536,7 +507,7 @@
               massimo comfort e sicurezza.
             </p>
           </div>
-  
+
           <div class="footer-section">
             <h4>Contatti</h4>
             <ul>
@@ -548,7 +519,7 @@
               <li><i class="fas fa-envelope"></i> info@wavetogo.it</li>
             </ul>
           </div>
-  
+
           <div class="footer-section">
             <h4>Legale</h4>
             <ul>
@@ -558,40 +529,45 @@
             </ul>
           </div>
         </div>
-  
+
         <div class="footer-bottom">
           <p>&copy; 2024 WaveToGo - Tutti i diritti riservati.</p>
           <p>P.IVA 01234567890 | [Inserisci Ragione Sociale]</p>
         </div>
-    </div>
+      </div>
     </div>
 
     <div id="booking-modal" class="modal-overlay">
       <div class="modal-content">
         <div class="modal-header">CONFERMA PRENOTAZIONE</div>
         <div class="modal-body" id="modal-summary">
-          </div>
+          <h3>ciao</h3>
+        </div>
         <div class="modal-footer">
-          <button class="btn-modal-close" onclick="closeModal()">Annulla</button>
-          <button class="btn-modal-confirm" id="confirm-booking-btn">Conferma su WhatsApp</button>
+          <button class="btn-modal-close" onclick="closeModal()">
+            Annulla
+          </button>
+          <button class="btn-modal-confirm" id="confirm-booking-btn">
+            Conferma
+          </button>
         </div>
       </div>
     </div>
 
     <nav class="bottom-nav">
-      <div class="nav-item active" >
+      <div class="nav-item active">
         <i class="fas fa-home"></i><span class="nav-txt">Home</span>
       </div>
-      <div class="nav-item" >
+      <div class="nav-item">
         <i class="fas fa-ship"></i><span class="nav-txt">Flotta</span>
       </div>
       <div class="nav-item">
         <i class="far fa-map"></i><span class="nav-txt">Itinerari</span>
       </div>
-      <div class="nav-item" >
+      <div class="nav-item">
         <i class="far fa-comment"></i><span class="nav-txt">Chat</span>
       </div>
-      <div class="nav-item" >
+      <div class="nav-item">
         <i class="far fa-user-circle"></i><span class="nav-txt">Profilo</span>
       </div>
     </nav>

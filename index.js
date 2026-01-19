@@ -185,12 +185,57 @@ function prenota(idx) {
     
     // Mostriamo il popup
     const summary = document.getElementById('modal-summary');
-    summary.innerHTML = `
-        <p><b>Modello:</b> ${boatName}</p>
-        <p><b>Giorno:</b> ${dateStr}</p>
-        <p><b>Extra:</b> ${selectedExtras.length > 0 ? selectedExtras.join(', ') : 'Nessuno'}</p>
-        <div style="font-size: 1.3rem; margin-top: 20px; color: #1a2a6c;"><b>TOTALE: €${finalPrice}</b></div>
-    `;
+// Recuperiamo gli extra non selezionati per il promemoria
+const allPossibleExtras = ["Ghiacciaia","Telo e crema solare", "Kit snorkeling", "Giochi gonfiabili", "Set GoPro", "Benzina"];
+const missingExtras = allPossibleExtras.filter(item => !selectedExtras.includes(item));
+
+summary.innerHTML = `
+    <div style="font-family: 'Montserrat', sans-serif; color: #2d3436;">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <i class="fas fa-file-invoice" style="font-size: 2rem; color: #1a2a6c;"></i>
+            <h3 style="margin: 10px 0; color: #1a2a6c; text-transform: uppercase; letter-spacing: 1px;">Riepilogo Ordine</h3>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 12px 0; color: #636e72; font-weight: 500;">Modello Barca</td>
+                <td style="padding: 12px 0; text-align: right; font-weight: 700; color: #1a2a6c;">${boatName}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 12px 0; color: #636e72; font-weight: 500;">Data Selezionata</td>
+                <td style="padding: 12px 0; text-align: right; font-weight: 700;">${dateStr}</td>
+            </tr>
+        </table>
+
+        <div style="margin-bottom: 20px;">
+            <p style="font-size: 0.85rem; font-weight: 700; color: #b21f1f; text-transform: uppercase; margin-bottom: 10px;">Servizi Inclusi:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                ${selectedExtras.length > 0 
+                    ? selectedExtras.map(ex => `<span style="background: #e1f5fe; color: #0288d1; padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">+ ${ex}</span>`).join('')
+                    : '<span style="color: #95a5a6; font-style: italic;">Nessun extra selezionato</span>'}
+            </div>
+        </div>
+
+        <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); margin: 25px 0;">
+
+        ${missingExtras.length > 0 ? `
+            <div style="background: #fff9db; padding: 15px; border-radius: 12px; border: 1px dashed #f1c40f; margin-bottom: 25px;">
+                <p style="margin: 0 0 8px 0; font-size: 0.8rem; font-weight: 700; color: #856404;">
+                    <i class="fas fa-lightbulb"></i> TI SERVE ALTRO?
+                </p>
+                <p style="margin: 0; font-size: 0.75rem; color: #927420;">
+                    Puoi ancora aggiungere: <b>${missingExtras.slice(0, 5).join(', ')}...</b> comunicandolo in chat!
+                </p>
+            </div>
+        ` : ''}
+
+        <div style="background: #1a2a6c; color: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(26, 42, 108, 0.3);">
+            <span style="font-size: 0.9rem; opacity: 0.8; text-transform: uppercase;">Totale da corrispondere</span>
+            <div style="font-size: 2.2rem; font-weight: 800; margin-top: 5px;">€${finalPrice}</div>
+            <div style="font-size: 0.7rem; margin-top: 10px; opacity: 0.7;">Tasse e costi di servizio inclusi</div>
+        </div>
+    </div>
+`;
 
     document.getElementById('confirm-booking-btn').onclick = () => {
         const extrasStr = selectedExtras.length > 0 ? `%0AExtra scelti: ${selectedExtras.join(', ')}` : "";
@@ -217,12 +262,6 @@ window.onload = () => {
     forceTwemoji();
 };
 
-window.addEventListener('click', (e) => { 
-    if (!e.target.closest('.lang-selector')) { 
-        const menu = document.getElementById("lang-menu");
-        if (menu) menu.classList.remove("show"); 
-    } 
-    // Chiudi popup se clicchi fuori dalla parte bianca
-    const modal = document.getElementById('booking-modal');
-    if (e.target === modal) closeModal();
-});
+
+
+
