@@ -1,32 +1,3 @@
-:root {
-  --primary-dark: #0a1e3b;
-  --accent-orange: #f5a623;
-  --bg-solid: #e8eef4;
-  --white: #ffffff;
-  --text-main: #333333;
-  --text-light: #888888;
-  --radius: 16px;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  --transition: all 0.3s ease;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-  background-color: var(--bg-solid);
-  color: var(--text-main);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-}
 
 /* --- STILI CAROSELLO --- */
 .carousel-viewport {
@@ -132,14 +103,24 @@ body {
 .logo-go {
   color: var(--white);
 }
+/* Nascondi tutto di base, ci pensa il JS a mostrare la Home */
+#page1, #page0 {
+    display: none;
+}
 
-.main-content {
+.two-content {
+  flex: 1;
+  overflow-y: auto;
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+.one-content {
   flex: 1;
   overflow-y: auto;
   position: relative;
   z-index: 1;
 }
-
 .boat-card {
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -569,12 +550,7 @@ input:focus {
   font-size: 1.3rem;
   margin-bottom: 4px;
 }
-.nav-item.active {
-  color: var(--primary-dark);
-}
-.nav-item.active i {
-  color: var(--accent-orange);
-}
+
 
 @keyframes fadeIn {
   from {
@@ -680,3 +656,4 @@ img.emoji {
 .leaflet-container {
   font-family: "Montserrat", sans-serif;
 }
+

@@ -14,9 +14,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="./index.css" />
-
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./page2.css" />
   </head>
   <body>
+    <!-- HEADER -->
     <header class="app-header">
       <i class="fas fa-bars header-icon"></i>
       <div class="logo-container">
@@ -37,7 +39,53 @@
         </div>
       </div>
     </header>
-    <div class="main-content" id="page1">
+
+    <!-- MAIN CONTENT -->
+    <div class="one-content" id="page0">
+      <div class="main-footer">
+        <div class="footer-content">
+          <div class="footer-section brand-info">
+            <div class="logo-container">
+              <span class="logo-wave">Wave</span><span class="logo-to">To</span
+              ><span class="logo-go">Go</span>
+            </div>
+            <p>
+              Noleggio gommoni d'eccellenza. Esplora le coste più belle con il
+              massimo comfort e sicurezza.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Contatti</h4>
+            <ul>
+              <li>
+                <i class="fas fa-location-dot"></i> Porto di [Inserisci Nome
+                Porto]
+              </li>
+              <li><i class="fas fa-phone"></i> +39 324 683 0501</li>
+              <li><i class="fas fa-envelope"></i> info@wavetogo.it</li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Legale</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="#">Termini e Condizioni</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 WaveToGo - Tutti i diritti riservati.</p>
+          <p>P.IVA 01234567890 | [Inserisci Ragione Sociale]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="two-content" id="page1">
       <div class="carousel-viewport" id="boat-carousel">
         <div class="carousel-item">
           <div class="boat-card" data-index="0">
@@ -101,7 +149,7 @@
                 <div class="extra-row">
                   <div class="extra-label">
                     <i class="fas fa-gas-pump"></i>
-                    <span class="extra-txt">Benzina Extra ( Tanica* )</span>
+                    <span class="extra-txt">Benzina extra ( Tanica* )</span>
                   </div>
                   <div style="display: flex; align-items: center">
                     <span class="extra-price-tag">+€30</span>
@@ -238,7 +286,10 @@
                 </p>
               </div>
             </div>
-            <p id="alert"><i class="fa-solid fa-triangle-exclamation"></i> seleziona una data per procedere.</p>
+            <p id="alert">
+              <i class="fa-solid fa-triangle-exclamation"></i> seleziona una
+              data per procedere.
+            </p>
             <button class="btn-prenota-large" onclick="prenota(0)">
               PRENOTA ORA
             </button>
@@ -288,21 +339,170 @@
       </div>
     </div>
 
-    <div id="booking-modal" class="modal-overlay">
-      <div class="modal-content">
-        <div class="modal-body" id="modal-summary">
+    <!-- MAIN CONTENT -->
+    <div class="three-content" id="page2">
+      <div id="itinerari-page" class="three-content">
+        <div class="itinerary-header">
+          <h1>Esplora la Sardegna</h1>
+          <p>10 Rotte esclusive selezionate per te</p>
+        </div>
+
+        <div class="filter-bar">
+          <button
+            class="filter-btn active"
+            onclick="filterItineraries('tutti')"
+          >
+            Tutti
+          </button>
+          <button class="filter-btn" onclick="filterItineraries('relax')">
+            Relax
+          </button>
+          <button class="filter-btn" onclick="filterItineraries('wild')">
+            Wild
+          </button>
+          <button class="filter-btn" onclick="filterItineraries('vip')">
+            Glamour
+          </button>
+        </div>
+
+        <div id="itineraries-container">
+          <div class="itinerary-card" data-category="relax">
+            <div class="card-banner">
+              <img
+                src="https://images.unsplash.com/photo-1516616370751-86d6bd8b0651?auto=format&fit=crop&w=600"
+                alt="Tavolara"
+              />
+              <div class="badge-wind">
+                <i class="fas fa-wind"></i> Ovest / Maestrale
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="card-main-info">
+                <h2>Il Regno di Tavolara</h2>
+                <div class="stats-row">
+                  <span><i class="fas fa-route"></i> 14nm</span>
+                  <span><i class="fas fa-gas-pump"></i> 50-70€</span>
+                  <span><i class="fas fa-clock"></i> 6h consigliate</span>
+                </div>
+              </div>
+
+              <p class="short-desc">
+                Un classico intramontabile: l'isola imponente, le piscine
+                naturali e acque caraibiche.
+              </p>
+
+              <button class="details-toggle" onclick="toggleItinerary(this)">
+                Vedi Dettagli Rotta <i class="fas fa-chevron-down"></i>
+              </button>
+
+              <div class="expanded-details">
+                <div class="route-simulation">
+                  <div class="sim-step">
+                    <span class="step-time">09:00</span>
+                    <div class="step-info">
+                      <strong>Partenza: Porto</strong>
+                      <p>Check-in e briefing sicurezza.</p>
+                    </div>
+                  </div>
+                  <div class="sim-step">
+                    <span class="step-time">09:30</span>
+                    <div class="step-info">
+                      <strong>Cala Moresca</strong>
+                      <p>Sosta bagno veloce in acque trasparenti.</p>
+                    </div>
+                  </div>
+                  <div class="sim-step">
+                    <span class="step-time">11:00</span>
+                    <div class="step-info">
+                      <strong>Piscine di Molara</strong>
+                      <p>Ancoraggio su sabbia bianca. Snorkeling top.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pro-tips">
+                  <h3>
+                    <i class="fas fa-lightbulb"></i> Consigli del Capitano
+                  </h3>
+                  <ul>
+                    <li>
+                      Prenota il pranzo al ristorante "Il Re di Tavolara" entro
+                      le 10:30.
+                    </li>
+                    <li>Attenzione alle zone AMP (Area Marina Protetta).</li>
+                    <li>
+                      Il miglior punto per i selfie è sotto la scogliera est.
+                    </li>
+                  </ul>
+                </div>
+
+                <a href="#" class="btn-maps-route"
+                  ><i class="fas fa-map-marked-alt"></i> Apri Rotta su Google
+                  Maps</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-footer">
+        <div class="footer-content">
+          <div class="footer-section brand-info">
+            <div class="logo-container">
+              <span class="logo-wave">Wave</span><span class="logo-to">To</span
+              ><span class="logo-go">Go</span>
+            </div>
+            <p>
+              Noleggio gommoni d'eccellenza. Esplora le coste più belle con il
+              massimo comfort e sicurezza.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Contatti</h4>
+            <ul>
+              <li>
+                <i class="fas fa-location-dot"></i> Porto di [Inserisci Nome
+                Porto]
+              </li>
+              <li><i class="fas fa-phone"></i> +39 324 683 0501</li>
+              <li><i class="fas fa-envelope"></i> info@wavetogo.it</li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Legale</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="#">Termini e Condizioni</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 WaveToGo - Tutti i diritti riservati.</p>
+          <p>P.IVA 01234567890 | [Inserisci Ragione Sociale]</p>
         </div>
       </div>
     </div>
 
+    <div id="booking-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-body" id="modal-summary"></div>
+      </div>
+    </div>
+
     <nav class="bottom-nav">
-      <div class="nav-item active">
+      <div class="nav-item" id="one-button">
         <i class="fas fa-home"></i><span class="nav-txt">Home</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" id="two-button">
         <i class="fas fa-ship"></i><span class="nav-txt">Flotta</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" id="three-button">
         <i class="far fa-map"></i><span class="nav-txt">Itinerari</span>
       </div>
       <div class="nav-item">
@@ -319,5 +519,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="./index.js"></script>
+    <script src="./data.js"></script>
+    <script src="./state.js"></script>
+    <script src="./ui-templates.js"></script>
+    <script src="./page2.js"></script>
   </body>
 </html>
