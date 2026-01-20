@@ -532,7 +532,7 @@ input:focus {
   display: flex;
   justify-content: space-around;
   padding: 12px 0 20px 0;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.171);
   z-index: 99;
 }
 
@@ -657,3 +657,36 @@ img.emoji {
   font-family: "Montserrat", sans-serif;
 }
 
+.scrolled {
+    background-color: #0a1e3b;
+}
+
+/* Stile base del bottone */
+.main-btn {
+    transition: all 0.3s ease; /* Rende il cambio colore fluido */
+    cursor: pointer;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+}
+
+/* Quando il bottone è DISABILITATO */
+.disabled-booking {
+    background-color: #d1d5db !important; /* Grigio chiaro */
+    color: #9ca3af !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Quando il bottone è ATTIVO (Pronto per inviare) */
+.active-booking {
+    background-color: var(--accent-orange) !important; /* Il tuo arancione */
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+    transform: translateY(-2px); /* Effetto sollevamento */
+}
+
+/* Effetto al tocco/click */
+.active-booking:active {
+    transform: scale(0.95);
+}
