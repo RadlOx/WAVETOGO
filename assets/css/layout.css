@@ -1,0 +1,449 @@
+.section2 {
+  display: none;
+}
+
+/* Contenitore centrale con larghezza max e padding laterale */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+  height: 100%;
+}
+
+/* Header fissato in alto sopra tutto il resto */
+.header {
+  position: absolute;         /* lo posiziona sopra la hero */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;              /* sempre sopra agli altri layer */
+}
+
+/* Layout interno header con logo a sinistra e nav a destra */
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+/* Stile del logo */
+.logo {
+  font-weight: 700;
+  color: var(--bg);
+  font-size: 1.4rem;
+}
+
+/* Colore secondario per la parte span del logo */
+.logo span {  
+  color: var(--accent);
+}
+
+/* Spaziatura tra i bottoni della navigazione */
+.nav button {
+  margin-left: 16px;
+  font-weight: 600;
+}
+
+/* Stato attivo per i bottoni */
+.nav button.active {
+  color: var(--accent);
+}
+
+/* Padding generale delle sezioni */
+.section {
+  padding: 64px 0;
+}
+
+/* HERO principale */
+.hero {
+  background: linear-gradient(220deg, var(--primary), var(--accent)); /* sfondo sfumato */
+  color: var(--white);          /* testo bianco */
+  text-align: center;           /* testo centrato */
+  height: 100vh;                /* altezza pieno schermo */
+  padding-bottom: 100px;        /* spazio per contenuti */
+  position: relative;           /* crea contesto per elementi assoluti */
+  overflow: hidden;             /* taglia elementi che escono */
+  z-index: 0;                   /* stacking context base */
+}
+
+/* Contenitore onde nella hero (se usato) */
+.hero .hero-waves {
+  position: absolute;           /* onde posizionate sopra la hero */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;                   /* onde sotto i contenuti */
+  pointer-events: none;         /* non blocca click */
+}
+
+/* Contenuti della hero sopra le onde */
+.hero-content,
+.trust-showcase {
+  position: relative;           /* necessario per z-index */
+  z-index: 2;                   /* contenuti sopra */
+}
+
+/* Livello bolle nella hero */
+.hero .bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;                   /* bolle sopra le onde */
+}
+
+/* --- FOOTER STYLING --- */
+.main-footer {
+  position: relative;           /* serve per contenuti assoluti interni */
+  background: #041b2e;          /* colore footer */
+  color: #e9f6f8;               /* testo footer */
+  padding-top: 0px;
+}
+
+/* Copre eventuale distacco tra onde e footer */
+#cover-onde {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #041b2e;
+  z-index: 3;
+}
+
+/* Posizionamento onde footer */
+.footer-waves .wave {
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  top: -114px;
+  width: 100%;
+  height: 20%;
+}
+
+/* Onda posteriore (più lontana) */
+.wave-back { top: -135px; z-index: 1; }
+
+/* Onda frontale (più vicina) */
+.wave-front { top: -124px; z-index: 2; }
+
+/* Griglia principale del footer */
+.footer-content {
+  position: relative;
+  z-index: 3;                   /* sopra le onde */
+  display: grid;
+  gap: 2.5rem;
+  padding: 3rem 8%;
+  grid-template-columns: 1.2fr 0.05fr 1.6fr 0.05fr 1.2fr;
+  align-items: start;
+}
+
+/* =====================================================
+   page2.css — cleaned (duplicate rules removed)
+   ===================================================== */
+
+/* --- 1. CONFIGURAZIONE GENERALE & WIDGET --- */
+:root {
+  --primary-color: #0f2e46;
+  --accent-color: #5ec9cd;
+  --bg-light: #f8f9fa;
+  --text-dark: #333333;
+  --radius: 8px;
+  --success: #276749;
+}
+
+
+.tabs-nav {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 0px;
+}
+
+/* Stile tab (consolidato, duplicati rimossi) */
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 10px 5px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tab-btn.active,
+.tab-btn:hover {
+  color: white;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+/* Contenuto Tabs */
+.tab-content,
+.tab-panel {
+  display: none;
+  padding: 15px;
+  animation: fadeIn 0.3s ease;
+}
+.tab-content.active,
+.tab-panel.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+/* Etichetta categoria footer */
+.footer-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0fa3b1;
+  margin-bottom: 0.6rem;
+}
+
+/* Titoli nel footer */
+.footer-column h3,
+.footer-column h4 {
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+}
+
+/* Testi generici del footer */
+.footer-column p,
+.footer-column li,
+.footer-column small {
+  color: #cfe7ef;
+  font-size: 0.95rem;
+}
+
+/* Divisore verticale tra colonne */
+.footer-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  height: 100%;
+}
+
+/* Icone social */
+.footer-social {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+/* Stile dei bottoni social */
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0fa3b1;
+  color: #041b2e;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* Hover social */
+.footer-social a:hover {
+  transform: scale(1.08);
+  background: #ffffff;
+}
+
+/* Form newsletter */
+.newsletter-form {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+/* Campo input con icona */
+.input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0f2f46;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+}
+
+/* Icona nel campo input */
+.input-wrap i {
+  color: #0fa3b1;
+}
+
+/* Input email */
+.newsletter-form input {
+  border: none;
+  background: transparent;
+  color: #e9f6f8;
+  width: 100%;
+  outline: none;
+}
+
+/* Bottone invio */
+.newsletter-form button {
+  background: #0fa3b1;
+  color: #041b2e;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Hover bottone */
+.newsletter-form button:hover {
+  background: #ffffff;
+}
+
+/* Sezione finale footer */
+.footer-bottom {
+  position: relative;
+  z-index: 3;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 8%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Link footer bottom */
+.footer-bottom-links a {
+  margin-left: 1rem;
+  color: #cfe7ef;
+}
+
+/* Hover link footer */
+.footer-bottom-links a:hover {
+  color: #0fa3b1;
+}
+
+/* Layout responsive footer */
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  .footer-divider {
+    display: none;
+  }
+}
+
+/* Layout responsive bottom footer */
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-bottom-links a {
+    margin: 0 0.5rem;
+  }
+}
+
+/* =========================
+   LAYER BOLLE (contenitore)
+   ========================= */
+.bubbles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* =========================
+   STILE DI UNA BOLLA
+   ========================= */
+.bubble {
+  position: absolute;
+  bottom: 0px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  z-index: 1;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(0, 0, 0, 0.267),
+    rgba(56, 169, 204, 0.541)
+  );
+  opacity: var(--opacity);
+  animation:
+    rise var(--duration) linear forwards,
+    sway var(--sway) ease-in-out infinite;
+  filter: blur(0.2px);
+}
+
+/* Animazione salita bolle */
+@keyframes rise {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(-150vh - 10px)); }
+}
+
+/* Oscillazione laterale bolle */
+@keyframes sway {
+  0%,100% { margin-left: 0; }
+  50%     { margin-left: 25px; }
+}
+
+/* Riduce animazioni per accessibilità */
+@media (prefers-reduced-motion: reduce) {
+  .bubble { animation: none; }
+}
+
+/* =====================================================
+   AGGIUNTE: CSS INLINE ESTRATTO DAL TUO HTML (HERO/LAYER)
+   ===================================================== */
+
+#section1 {
+  position: relative;
+}
+
+/* SVG onde background della hero (prima inline) */
+.hero-waves-bg {
+  background: transparent;
+  position: absolute;
+  transform: rotate(180deg);
+  opacity: 0.6;
+  top: 0px;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* overlay sopra onde (prima inline) */
+.hero-overlay-z1 {
+  z-index: 1;
+}
+
+/* contenuto hero sopra overlay (prima inline) */
+.hero-content-z2 {
+  position: relative;
+  z-index: 2;
+}
+
+/* trust showcase sopra (prima inline) */
+.trust-showcase-z3 {
+  position: relative;
+  z-index: 3;
+}
+
+/* titoli hero (prima inline) */
+.hero-title-line1 { color: #f3f3f3; }
+.hero-title-line2 { font-size: 3.4rem; }
+.hero-title-line4 { font-size: 1.5rem; display: inline; color: #f3f3f3; }
+.hero-title-line3 { font-size: 1.5rem; display: inline; }
